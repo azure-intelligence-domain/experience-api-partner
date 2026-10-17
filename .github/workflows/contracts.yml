@@ -1,0 +1,20 @@
+name: contracts
+
+# No code of its own: the contract is the building block. The platform serves it in front of the
+# 3PL System API (integration-platform/routing/apis.yaml). No contract, no gateway.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    uses: azure-intelligence-domain/contracts/.github/workflows/contract-check.yml@v1.1.0
+    with:
+      contracts: openapi.yaml
+      contracts-ref: v1.2.0
